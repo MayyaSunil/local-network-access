@@ -647,12 +647,8 @@ Update [[FETCH]] as follows:
 
       1.  If |request|'s [=request/target IP address space=] is not null:
 
-          1.  [=Assert=]: |request|'s [=request/target IP address space=] is not
-              [=IP address space/public=].
-
-          1.  If |addressSpace| is not equal to
-              then |request|'s [=request/target IP address space=], then return
-              a [=network error=].
+          1.  If |addressSpace| is not equal to |request|'s [=request/target
+              IP address space=], then return a [=network error=].
 
           1.  Return null.
 
@@ -760,12 +756,24 @@ The Fetch API needs to be adjusted as well.
         switch on |init|["{{RequestInit/targetAddressSpace}}"]:
         <dl class=switch>
           <dt>public
-            <dd>Do nothing.
+          <dd>Set |request|'s [=request/target IP address space=] to [=IP address
+            space/public=].
 
           <dt>local
-          <dd>Set |request|'s targetAddressSpace to [=IP address
+          <dd>Set |request|'s [=request/target IP address space=] to [=IP address
             space/local=].
+
+          <dt>loopback
+          <dd>Set |request|'s [=request/target IP address space=] to [=IP address
+            space/loopback=].
         </dl>
+
+        NOTE: When |request|'s [=request/target IP address space=] is set
+        explicitly (including to [=IP address space/public=]), the [=Local
+        Network Access check=] algorithm will fail the request if the resolved
+        IP address's [=/IP address space=] does not match. This allows callers
+        to assert the expected address space of a request and fail fast if it
+        does not match, without waiting for a permission prompt.
 
 ## Integration with Mixed Content ## {#integration-with-mixed-content}
 
