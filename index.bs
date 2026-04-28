@@ -12,7 +12,7 @@ Markup Shorthands: markdown yes, css no
 Complain About: accidental-2119 yes, missing-example-ids yes
 Assume Explicit For: yes
 Die On: warning
-WPT Path Prefix: TODO-API-LABEL
+WPT Path Prefix: /fetch/local-network-access/
 WPT Display: closed
 Include MDN Panels: if possible
 Include Can I Use Panels: yes
@@ -854,7 +854,7 @@ TODO: Also update the reference to Private Network Access in [[html#coep]].
 
 Given that {{WorkerGlobalScope}} already has a
 [=WorkerGlobalScope/policy container=] field populated using the [=create a
-policy container from a fetch response=] algorithm, the avove integrations
+policy container from a fetch response=] algorithm, the above integrations
 with Fetch and HTML apply just as well to worker contexts as to documents.
 
   <div class="example" id="example-worker-policy">
